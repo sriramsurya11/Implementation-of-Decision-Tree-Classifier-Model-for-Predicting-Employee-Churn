@@ -8,89 +8,104 @@ To write a program to implement the Decision Tree Classifier Model for Predictin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1.Load the Employee.csv dataset and display the first few rows.
-
-2.Check dataset structure and find any missing values.
-
-3.Display the count of employees who left vs stayed.
-
-4.Encode the "salary" column using LabelEncoder to convert it into numeric values.
-
-5.Define features x with selected columns and target y as the "left" column.
-
-6.Split the data into training and testing sets (80% train, 20% test).
-
-7.Create and train a DecisionTreeClassifier model using the training data.
-
-8.Predict the target values using the test data.
-
-9.Evaluate the model’s accuracy using accuracy score.
-
-10.Predict whether a new employee with specific features will leave or not. 
+1. import pandas module and import the required data set.
+2. Find the null values and count them.
+3. Count number of left values.
+4. From sklearn import LabelEncoder to convert string values to numerical values.
+5. From sklearn.model_selection import train_test_split.
+6. Assign the train dataset and test dataset.
+7. From sklearn.tree import DecisionTreeClassifier.
+8. Use criteria as entropy.
+9. From sklearn import metrics.
+10. Find the accuracy of our model and predict the require values.
 
 ## Program:
 ```
 /*
 Program to implement the Decision Tree Classifier Model for Predicting Employee Churn.
 Developed by: SRIRAM E
-RegisterNumber: 212223040207
+RegisterNumber:  212223040207
 */
-
+```
+```python
 import pandas as pd
-data = pd.read_csv("Employee.csv")
-data
-
+data = pd.read_csv('Employee.csv')
 data.head()
-
+data.info()
 data.isnull().sum()
-
 data["left"].value_counts()
-
 from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder()
-
-data["salary"] = le.fit_transform(data["salary"])
+le=LabelEncoder()
+data["salary"]=le.fit_transform(data["salary"])
 data.head()
-
 x=data[["satisfaction_level","last_evaluation","number_project","average_montly_hours","time_spend_company","Work_accident","promotion_last_5years","salary"]]
 x.head()
-
 y=data["left"]
-y.head()
-
 from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(x,y, test_size = 0.2, random_state = 100)
-
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=100)
 from sklearn.tree import DecisionTreeClassifier
-dt=DecisionTreeClassifier (criterion="entropy")
+dt=DecisionTreeClassifier(criterion="entropy")
 dt.fit(x_train,y_train)
 y_pred=dt.predict(x_test)
-
 from sklearn import metrics
 accuracy=metrics.accuracy_score(y_test,y_pred)
 accuracy
-
 dt.predict([[0.5,0.8,9,260,6,0,1,2]])
-
-
 ```
 
 ## Output:
-### Value of df
-![Screenshot 2025-04-27 114859](https://github.com/user-attachments/assets/759ee2e4-a7b6-485a-8456-1088e8d504d7)
-### df.head() and df.isnull().sum()
-![Screenshot 2025-04-27 114914](https://github.com/user-attachments/assets/56a8dfa4-cd4f-435b-bb28-594f870c2e63)
-### df.describe()
-![Screenshot 2025-04-27 114934](https://github.com/user-attachments/assets/0685d091-a2cc-4335-973f-c83547b3456f)
-### df.info() and Value counts
-![Screenshot 2025-04-27 114945](https://github.com/user-attachments/assets/ad1d5258-322b-4f05-9eef-d0ec50e86005)
-### df.head()
-![Screenshot 2025-04-27 115003](https://github.com/user-attachments/assets/c4d39916-5bff-4a3c-a92a-d6193b363730)
-### Value of x.head() and y
-![Screenshot 2025-04-27 115003](https://github.com/user-attachments/assets/66bc82ad-9915-4e83-8950-0f6560a0db23)
-### Value of Accuracy,Confusion_matrix and data prediction
-![Screenshot 2025-04-27 120512](https://github.com/user-attachments/assets/9701d0bf-3034-438b-ab2a-c6cf2333e036)
+#### Data.head()
 
+
+![image](https://github.com/user-attachments/assets/78c9b2d7-c05c-4f2b-bae5-55edf9881154)
+
+
+#### Data.info():
+
+
+![image](https://github.com/user-attachments/assets/78febfb9-d2b6-4831-bc85-4293e14e5df3)
+
+
+
+#### isnull() and sum():
+
+
+![image](https://github.com/user-attachments/assets/e8aa4470-5a6c-4971-8c88-2bdf981391db)
+
+
+
+#### Data Value Counts():
+
+
+![image](https://github.com/user-attachments/assets/2bfa8f92-b592-493a-a787-2e7894567e6d)
+
+
+
+#### Data.head() for salary:
+
+
+![image](https://github.com/user-attachments/assets/d6140e12-30fe-4738-b67c-ac8b910a8ddb)
+
+
+
+#### x.head():
+
+
+![image](https://github.com/user-attachments/assets/b1aa30c8-f88c-44d2-af18-86de53a4416e)
+
+
+
+#### Accuracy Value:
+
+
+![image](https://github.com/user-attachments/assets/ef8a6650-616f-40c3-a0b7-3b830e3cae50)
+
+
+
+#### Data Prediction:
+
+
+![image](https://github.com/user-attachments/assets/e074336d-cd28-472a-bb4e-e8ea19fcd2eb)
 
 
 ## Result:
